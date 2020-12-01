@@ -7,7 +7,11 @@ describe('landingPageReducer', () => {
   let state;
   beforeEach(() => {
     state = {
-      // default state params here
+      text: "",
+      fetching: false,
+      reversedItems: [],
+      alertMessage: null,
+      showAlertMessage: false,
     };
   });
 

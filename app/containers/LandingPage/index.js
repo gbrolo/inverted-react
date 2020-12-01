@@ -10,7 +10,6 @@ import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
@@ -19,7 +18,6 @@ import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectLandingPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import messages from './messages';
 
 import SearchBar from '../../components/SearchBar/Loadable';
 import ReversedList from '../../components/ReversedList/Loadable';
@@ -74,24 +72,31 @@ export function LandingPage({
   );  
 
   const renderSearchBar = () => (
+    landingPage !== undefined ?
     <SearchBar
       onButtonPress={onReverseString}
-    />
+      fetching={landingPage.fetching}
+    /> :
+    null
   );
 
   const renderList = () => (
+    landingPage !== undefined ?
     <ReversedList
       items={landingPage.reversedItems}
       onPressItem={onRemoveReversedString}
-    />
+    /> :
+    null
   );
 
   const renderAlert = () => (
+    landingPage !== undefined ?
     <AlertMessage
       onToggleAlert={onToggleAlert}
       alertMessage={landingPage.alertMessage}
       showAlertMessage={landingPage.showAlertMessage}
-    />
+    /> :
+    null
   );
 
   return (
@@ -107,6 +112,10 @@ export function LandingPage({
 }
 
 LandingPage.propTypes = {  
+  landingPage: PropTypes.object,
+  onToggleAlert: PropTypes.func,
+  onReverseString: PropTypes.func,
+  onRemoveReversedString: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({

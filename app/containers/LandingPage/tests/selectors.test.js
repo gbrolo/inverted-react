@@ -1,7 +1,14 @@
-// import { selectLandingPageDomain } from '../selectors';
+import { selectLandingPageDomain } from '../selectors';
 
 describe('selectLandingPageDomain', () => {
-  it('Expect to have unit tests specified', () => {
-    expect(true).toEqual(false);
+  it('Expect selector to select initial reducer state', () => {
+    const landingPage = selectLandingPageDomain({ landingPage: null });    
+    expect(landingPage).toEqual({
+      text: "",
+      fetching: false,
+      reversedItems: [],
+      alertMessage: null,
+      showAlertMessage: false,
+    });
   });
 });

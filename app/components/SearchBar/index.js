@@ -16,6 +16,7 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
 function SearchBar({
+  fetching,
   onButtonPress,
 }) {
   const [value, setValue] = useState("");
@@ -27,7 +28,18 @@ function SearchBar({
   const handleReverseButton = (e) => {
     e.preventDefault();    
     onButtonPress(value);
+    setValue("");
   };
+
+  const renderSpinner = () => (
+    fetching ?
+    <div 
+      className="spinner-border text-dark" 
+      role="status" 
+      style={{ marginLeft: '16px' }}
+    /> :
+    null
+  )
 
   const renderSearchInput = () => (
     <form
@@ -67,9 +79,11 @@ function SearchBar({
             <button 
               type="submit" 
               onClick={handleReverseButton}
-              className="btn btn-primary search-full-w"
+              className="btn btn-primary search-full-w flex-centered"
+              style={{ flexDirection: 'row' }}
             >
               <FormattedMessage {...messages.reverseButton}/>  
+              {renderSpinner()}
             </button>      
           </motion.div>
         </div>   

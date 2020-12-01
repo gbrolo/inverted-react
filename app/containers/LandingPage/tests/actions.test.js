@@ -1,13 +1,13 @@
-import { defaultAction } from '../actions';
-import { DEFAULT_ACTION } from '../constants';
+import { reverseString } from '../actions';
+import { REVERSE_STRING } from '../constants';
 
 describe('LandingPage actions', () => {
-  describe('Default Action', () => {
-    it('has a type of DEFAULT_ACTION', () => {
+  describe('Reverse String Action', () => {
+    it('has a type of REVERSE_STRING', () => {
       const expected = {
-        type: DEFAULT_ACTION,
+        type: REVERSE_STRING,
       };
-      expect(defaultAction()).toEqual(expected);
+      expect(reverseString()).toEqual(expected);
     });
   });
 });

@@ -1,4 +1,4 @@
-import { takeLatest, call, put, select } from 'redux-saga/effects';
+import { takeLatest, put, select } from 'redux-saga/effects';
 import { requestReverse } from '../../axios/providers/reverse';
 import { addReversedString, toggleAlert } from './actions';
 import { REVERSE_STRING } from './constants';

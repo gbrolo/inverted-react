@@ -116,11 +116,11 @@ module.exports = require('./webpack.base.babel')({
     }),
 
     new WebpackPwaManifest({
-      name: 'React Boilerplate',
-      short_name: 'React BP',
-      description: 'My React Boilerplate-based project!',
+      name: 'Inverted React',
+      short_name: 'Reversor',
+      description: 'Front end to invert strings',
       background_color: '#fafafa',
-      theme_color: '#b1624d',
+      theme_color: '#000',
       inject: true,
       ios: true,
       icons: [

@@ -6,7 +6,7 @@ const requestReverse = (
   text,
 ) => {
   return responseFormatter(axios.get(
-    constants.API_BASE_URL + `/iecho?text=${text}`
+    `${constants.API_BASE_URL}/iecho?text=${text}`
   ));
 };
 

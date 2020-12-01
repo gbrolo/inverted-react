@@ -49,6 +49,7 @@ function ReversedList({
   onPressItem,
 }) {
   const renderItems = () => (
+    items !== undefined &&
     items.length > 0 ?
     <React.Fragment>
       {

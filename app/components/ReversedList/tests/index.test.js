@@ -1,8 +1,6 @@
 /**
  *
- * Tests for ReversedList
- *
- * @see https://github.com/react-boilerplate/react-boilerplate/tree/master/docs/testing
+ * Tests for ReversedList  
  *
  */
 
@@ -23,10 +21,6 @@ describe('<ReversedList />', () => {
       </IntlProvider>,
     );
     expect(spy).not.toHaveBeenCalled();
-  });
-
-  it('Expect to have additional unit tests specified', () => {
-    expect(true).toEqual(false);
   });
 
   /**

@@ -35,21 +35,29 @@ const landingPageReducer = (state = initialState, action) =>
       case REMOVE_REVERSED_STRING:
         draft.reversedItems = draft.reversedItems.filter(item => item.text !== action.id);
         break;
-      case ADD_REVERSED_STRING:  
-        const reversedKeys = draft.reversedItems.map(i => {
-          return i.text;
-        });
-
-        if (!reversedKeys.includes(draft.text)) {
-          draft.reversedItems.push({
-            text: draft.text,
-            reversed: action.reversedItem,
+      case ADD_REVERSED_STRING: {
+        if (draft.text !== "") {
+          const reversedKeys = draft.reversedItems.map(i => {
+            return i.text;
           });
+  
+          if (!reversedKeys.includes(draft.text)) {
+            draft.reversedItems.push({
+              text: draft.text,
+              reversed: action.reversedItem,
+            });
+          } else {
+            draft.alertMessage = "Item already added to list";
+            draft.showAlertMessage = true;
+          }          
         } else {
-          draft.alertMessage = "Item already added to list";
+          draft.alertMessage = "No empty strings are allowed";
           draft.showAlertMessage = true;
         }
+
+        draft.fetching = false;
         break;
+      }
       case REVERSE_STRING:
         draft.text = action.text;
         draft.fetching = true;
