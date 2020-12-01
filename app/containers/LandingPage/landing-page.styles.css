@@ -9,5 +9,11 @@
 .wrapper {
   width: 100%;
   min-height: 100vh;
-  padding-top: 75px;
+  margin-top: 20%;
+}
+
+@media (max-width: 600px) {
+  .wrapper {    
+    margin-top: 50%;
+  }
 }

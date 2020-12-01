@@ -21,10 +21,13 @@ import saga from './saga';
 import messages from './messages';
 
 import SearchBar from '../../components/SearchBar/Loadable';
-import { reverseString } from './actions';
+import ReversedList from '../../components/ReversedList/Loadable';
+import { removeReversedString, reverseString } from './actions';
 
 export function LandingPage({
+  landingPage,
   onReverseString,
+  onRemoveReversedString,
 }) {
   useInjectReducer({ key: 'landingPage', reducer });
   useInjectSaga({ key: 'landingPage', saga });
@@ -42,13 +45,20 @@ export function LandingPage({
     />
   );
 
+  const renderList = () => (
+    <ReversedList
+      items={landingPage.reversedItems}
+      onPressItem={onRemoveReversedString}
+    />
+  );
+
   return (
     <div
       className="wrapper flex-centered"
     >
       {renderHeaders()}
       {renderSearchBar()}
-      <FormattedMessage {...messages.header} />
+      {renderList()}
     </div>
   );
 }
@@ -63,6 +73,7 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     onReverseString: (text) => dispatch(reverseString(text)),
+    onRemoveReversedString: (id) => dispatch(removeReversedString(id)),
   };
 }
 

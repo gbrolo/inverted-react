@@ -1,0 +1,11 @@
+.list-wrapper {
+  min-width: 75%;
+}
+
+.list-item-text {
+  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
+.list-item-card:hover {
+  cursor: pointer;
+}

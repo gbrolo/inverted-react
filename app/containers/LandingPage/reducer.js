@@ -7,6 +7,7 @@ import produce from 'immer';
 import {
   REVERSE_STRING,
   ADD_REVERSED_STRING,
+  REMOVE_REVERSED_STRING,
 } from './constants';
 
 export const initialState = {
@@ -19,6 +20,9 @@ export const initialState = {
 const landingPageReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
+      case REMOVE_REVERSED_STRING:
+        draft.reversedItems = draft.reversedItems.filter(item => item.text !== action.id);
+        break;
       case ADD_REVERSED_STRING:  
         const reversedKeys = draft.reversedItems.map(i => {
           return i.text;
