@@ -1,7 +1,7 @@
 /**
  *
  * SearchBar
- *
+ * Component that renders input text box and button to perform an api call
  */
 
 import './search-bar.styles.css';
@@ -9,28 +9,41 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import React, { memo, useState } from 'react';
 import { motion } from 'framer-motion';
-// import PropTypes from 'prop-types';
-// import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
+/**
+ * Input text box and button to initiate api call
+ */
 function SearchBar({
   fetching,
   onButtonPress,
 }) {
   const [value, setValue] = useState("");
 
+  /**
+   * Handle input change event
+   * @param {event} e default input event
+   */
   const handleChangeValue = (e) => {
     setValue(e.target.value);
   };
 
+  /**
+   * Handle button press or form submit (with enter key)
+   * @param {event} e default button event
+   */
   const handleReverseButton = (e) => {
     e.preventDefault();    
     onButtonPress(value);
     setValue("");
   };
 
+  /**
+   * Render progress spinner when performing api calls
+   */
   const renderSpinner = () => (
     fetching ?
     <div 
@@ -41,6 +54,9 @@ function SearchBar({
     null
   )
 
+  /**
+   * Render actual input and button
+   */
   const renderSearchInput = () => (
     <form
       className="search-bar-form"
@@ -90,6 +106,7 @@ function SearchBar({
       </div>
     </form>
   );
+  
   return (
     <nav className="search-bar-wrapper navbar fixed-top navbar-expand-lg navbar-dark bg-dark flex-centered">
       {renderSearchInput()}
@@ -97,6 +114,9 @@ function SearchBar({
   );
 }
 
-SearchBar.propTypes = {};
+SearchBar.propTypes = {
+  fetching: PropTypes.bool,
+  onButtonPress: PropTypes.func,
+};
 
 export default memo(SearchBar);

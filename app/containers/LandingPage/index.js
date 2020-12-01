@@ -1,7 +1,7 @@
 /**
  *
  * LandingPage
- *
+ * Main homepage. Renders reversed items and input to fetch.
  */
 import './landing-page.styles.css';
 
@@ -23,6 +23,9 @@ import SearchBar from '../../components/SearchBar/Loadable';
 import ReversedList from '../../components/ReversedList/Loadable';
 import { removeReversedString, reverseString, toggleAlert } from './actions';
 
+/**
+ * Component that renders an alert (danger) message 
+ */
 function AlertMessage({
   alertMessage,
   showAlertMessage,
@@ -55,6 +58,15 @@ function AlertMessage({
   )
 }
 
+AlertMessage.propTypes = {  
+  alertMessage: PropTypes.string,
+  showAlertMessage: PropTypes.bool,
+  onToggleAlert: PropTypes.func,
+};
+
+/**
+ * Component that renders Landing Page
+ */
 export function LandingPage({
   landingPage,
   onToggleAlert,
@@ -64,6 +76,9 @@ export function LandingPage({
   useInjectReducer({ key: 'landingPage', reducer });
   useInjectSaga({ key: 'landingPage', saga });
 
+  /**
+   * Render page headers
+   */
   const renderHeaders = () => (
     <Helmet>
       <title>String Reverser</title>
@@ -71,6 +86,9 @@ export function LandingPage({
     </Helmet>
   );  
 
+  /**
+   * Render input text and button to initiate api calls
+   */
   const renderSearchBar = () => (
     landingPage !== undefined ?
     <SearchBar
@@ -80,6 +98,9 @@ export function LandingPage({
     null
   );
 
+  /**
+   * Render reversed items list
+   */
   const renderList = () => (
     landingPage !== undefined ?
     <ReversedList
@@ -89,6 +110,9 @@ export function LandingPage({
     null
   );
 
+  /**
+   * Render danger alert
+   */
   const renderAlert = () => (
     landingPage !== undefined ?
     <AlertMessage

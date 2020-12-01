@@ -1,18 +1,20 @@
 /**
  *
  * ReversedList
- *
+ * Renders reversed items list
  */
 
 import './reversed-list.styles.css';
 import React, { memo } from 'react';
 import { motion } from 'framer-motion';
-// import PropTypes from 'prop-types';
-// import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
+/**
+ * Individual list item
+ */
 function ListItem({
   item,
   onPressItem,
@@ -44,6 +46,18 @@ function ListItem({
   );
 }
 
+ListItem.propTypes = {
+  item: PropTypes.object,
+  onPressItem: PropTypes.func,
+};
+
+ListItem.defaultProps = {
+  onPressItem: () => {},
+};
+
+/**
+ * Complete item list 
+ */
 function ReversedList({
   items,
   onPressItem,
@@ -87,7 +101,11 @@ function ReversedList({
   );
 }
 
-ReversedList.propTypes = {};
+ReversedList.propTypes = {
+  items: PropTypes.array,
+  onPressItem: PropTypes.func,
+};
+
 ReversedList.defaultProps = {
   onPressItem: () => {},
 };

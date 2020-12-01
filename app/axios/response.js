@@ -1,3 +1,7 @@
+/**
+ * Useful to parse axios error responses
+ * @param {Axios response} response 
+ */
 const errorSwitch = (response) => {
   const data = {...response.data};
   const dispatchActions = [];
@@ -12,6 +16,10 @@ const errorSwitch = (response) => {
   return data;  
 };
 
+/**
+ * Handles an Axios Request Promise and parses it so sagas can perform api calls and then inject state into reducers
+ * @param {AxiosPromise} axiosPromise 
+ */
 export const responseFormatter = (axiosPromise) => {
   return new Promise((resolve, reject) => {
     axiosPromise
