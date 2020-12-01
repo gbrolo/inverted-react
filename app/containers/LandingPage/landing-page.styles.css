@@ -1,0 +1,13 @@
+.flex-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 75px;
+}

@@ -5,6 +5,9 @@
  * code.
  */
 
+// bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 // Needed for redux-saga es6 generator support
 import '@babel/polyfill';
 

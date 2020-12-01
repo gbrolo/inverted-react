@@ -1,0 +1,17 @@
+.search-bar-wrapper {  
+  min-height: 64px;
+}
+
+.search-box-label {
+  color: #ffffff;
+  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
+.search-full-w {
+  width: 100%;
+}
+
+.search-bar-form {
+  min-width: 75%;
+  padding: 16px;
+}
