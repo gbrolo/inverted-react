@@ -9,6 +9,9 @@
 ```app/containers``` contains React components as web app pages, including files for reducer, actions, constants and sagas for async calls.
 ```app/images``` contains favicon and icon used for PWA.
 
+## Install
+Run ```npm install``` to install dependencies.
+
 ## Development server
 Run the development server with:
 
