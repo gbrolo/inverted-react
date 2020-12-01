@@ -1,6 +1,6 @@
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { requestReverse } from '../../axios/providers/reverse';
-import { addReversedString } from './actions';
+import { addReversedString, toggleAlert } from './actions';
 import { REVERSE_STRING } from './constants';
 import makeSelectLandingPage from './selectors';
 
@@ -10,13 +10,11 @@ export default function* landingPageSaga() {
 }
 
 export function* reverseStringSaga() {
-  const landingPage = yield select(makeSelectLandingPage());
-  console.log(landingPage.text);
+  const landingPage = yield select(makeSelectLandingPage());  
   try {
-    const response = yield requestReverse(landingPage.text);
-    console.log(response);
+    const response = yield requestReverse(landingPage.text);    
     yield put(addReversedString(response));
-  } catch (error) {
-    console.log(error);
+  } catch (error) {    
+    yield put(toggleAlert(true, error.error));
   }
 }

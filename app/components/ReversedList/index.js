@@ -19,17 +19,27 @@ function ListItem({
 }) {
 
   return (
-    <motion.div
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.9 }}
-      className="card flex-centered text-white bg-dark mb-2 list-item-card"
-      onClick={() => onPressItem(item.text)}
+    <motion.div      
+      animate={{scale: [0, 1.09, 1]}}
+      transition={{
+        duration: 1,
+        ease: "easeInOut",  
+        times: [0, 0.2, 0.4],
+      }}
+      className="mb-2"
     >
-      <h6 className="list-item-text">{item.text}: {item.reversed.text}</h6>
-      <p className="list-item-text">
-        <FormattedMessage {...messages.palindrome}/>
-        <FormattedMessage {...messages[item.reversed.palindrome ? 'palindromeTrue' : 'palindromeFalse']}/>        
-      </p>
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.9 }}
+        className="card flex-centered text-white bg-dark list-item-card pt-3"
+        onClick={() => onPressItem(item.text)}
+      >
+        <h6 className="list-item-text">{item.text}: {item.reversed.text}</h6>
+        <p className="list-item-text">
+          <FormattedMessage {...messages.palindrome}/>
+          <FormattedMessage {...messages[item.reversed.palindrome ? 'palindromeTrue' : 'palindromeFalse']}/>        
+        </p>
+      </motion.div>
     </motion.div>
   );
 }

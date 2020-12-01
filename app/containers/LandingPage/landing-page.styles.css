@@ -12,6 +12,11 @@
   margin-top: 20%;
 }
 
+.alert-container {
+  position: fixed;
+  bottom: 16px;
+}
+
 @media (max-width: 600px) {
   .wrapper {    
     margin-top: 50%;

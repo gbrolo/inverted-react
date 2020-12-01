@@ -5,7 +5,8 @@
  */
 import './landing-page.styles.css';
 
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -22,10 +23,43 @@ import messages from './messages';
 
 import SearchBar from '../../components/SearchBar/Loadable';
 import ReversedList from '../../components/ReversedList/Loadable';
-import { removeReversedString, reverseString } from './actions';
+import { removeReversedString, reverseString, toggleAlert } from './actions';
+
+function AlertMessage({
+  alertMessage,
+  showAlertMessage,
+  onToggleAlert,
+}) {
+  
+  useEffect(() => {
+    if (showAlertMessage) {
+      setTimeout(() => {
+        onToggleAlert(false, null);
+      }, 2000);
+    }
+  }, [showAlertMessage]);
+
+  return (
+    showAlertMessage ?
+    <motion.div 
+      animate={{scale: [0, 1.09, 1]}}
+      transition={{
+        duration: 1,
+        ease: "easeInOut",  
+        times: [0, 0.2, 0.4],
+      }}
+      className="alert alert-danger alert-container" 
+      role="alert"
+    >
+      {alertMessage}
+    </motion.div> :
+    null
+  )
+}
 
 export function LandingPage({
   landingPage,
+  onToggleAlert,
   onReverseString,
   onRemoveReversedString,
 }) {
@@ -52,6 +86,14 @@ export function LandingPage({
     />
   );
 
+  const renderAlert = () => (
+    <AlertMessage
+      onToggleAlert={onToggleAlert}
+      alertMessage={landingPage.alertMessage}
+      showAlertMessage={landingPage.showAlertMessage}
+    />
+  );
+
   return (
     <div
       className="wrapper flex-centered"
@@ -59,6 +101,7 @@ export function LandingPage({
       {renderHeaders()}
       {renderSearchBar()}
       {renderList()}
+      {renderAlert()}
     </div>
   );
 }
@@ -72,6 +115,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
+    onToggleAlert: (showAlertMessage, alertMessage) => dispatch(toggleAlert(showAlertMessage, alertMessage)),
     onReverseString: (text) => dispatch(reverseString(text)),
     onRemoveReversedString: (id) => dispatch(removeReversedString(id)),
   };

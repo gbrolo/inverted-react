@@ -37,7 +37,7 @@ function SearchBar({
         className="row flex-centered"        
       >
         <label
-          for="input-search" 
+          htmlFor="input-search" 
           className="search-box-label"
         >
           <FormattedMessage {...messages.searchPlaceholder}/>            
